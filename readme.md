@@ -12,4 +12,9 @@ Always Updated follows the [Semantic Versioning](https://semver.org/), using a v
 - Minor: Incremented when new performance enhancements are added, such as new optimization features or resource management improvements, ensuring that these additions do not disrupt current setups.
 - Patch: Incremented when minor performance issues are resolved or optimizations are applied, providing users with incremental improvements without the need for significant changes to their configurations
 
+## FAQ
+**Q:** Why is the "Game Version" on Modrinth showing as blank?
+
+**A:** The "Game Version" may show as blank on Modrinth because their API isn't always updated to the latest snapshot version.
+
 _I made this because I play on the server [8bit.pt](https://www.youtube.com/@8bitpt) and most optimization modpacks dont update to snapshots._
