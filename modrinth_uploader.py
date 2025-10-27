@@ -75,7 +75,7 @@ def update_project_summary(project_id, game_versions, modrinth_token):
         print("Error: GAME_VERSIONS list is empty. Cannot update summary.")
         return False
 
-    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance."
+    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance. (No QoL mods)"
     
     api_url = f"https://api.modrinth.com/v2/project/{project_id}"
     headers = {"Authorization": modrinth_token, "User-Agent": "YoureIronic (youreironic@duck.com)"}
