@@ -190,7 +190,10 @@ if __name__ == "__main__":
     
     # --- Auto-Generated Fields ---
     VERSION_NAME = f"Always Updated v{VERSION_NUMBER} for Minecraft {GAME_VERSIONS[0]}"
-    CHANGELOG = f"- Added [kennytvs-epic-force-close-loading-screen-mod-for-fabric](https://modrinth.com/mod/forcecloseworldloadingscreen)"
+    CHANGELOG = 
+    f"""
+Markdown
+    """
     LOADERS = ["fabric"]
 
     # --- End of Configuration ---
