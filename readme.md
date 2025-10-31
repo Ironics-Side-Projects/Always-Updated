@@ -3,7 +3,7 @@
 Always Updated is a modpack prioritizes updating quickly to the latest snapshots having the best optimization mods and configurations that are avaliable for the current Minecraft snapshot. There are no quality of life mods if you are expecting those you are going to need to add your own.
 
 ## Maintenance
-When a new Minecraft snapshot or release comes out, we will stop supporting all earlier versions of the modpack. This pack is only updated and maintained for the most recent snapshot or official release. We will make every old version change to the Beta instead of Release for the release channel. We have always updated faster than any other modpack.
+When a new Minecraft snapshot or release comes out, we will stop supporting all earlier versions of the modpack. This pack is only updated and maintained for the most recent snapshot or official release. We will make every old version change to the Beta instead of Release for the release channel. We have always updated faster than any other modpack we cannot update any faster as we wait for the Sodium maintainer to update to the latest snapshot.
 
 ## Versioning
 Always Updated follows the [Semantic Versioning](https://semver.org/), using a version number format of `<major>.<minor>.<patch>`. Updates to the version number follow these guidelines:
