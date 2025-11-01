@@ -22,6 +22,7 @@ def upload_to_github(repo_owner, repo_name, version_number, version_name, change
         "Accept": "application/vnd.github.v3+json"
     }
 
+    # --- Step 1: Create the Release ---
     release_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/releases"
     release_data = {
         "tag_name": tag_name,
@@ -39,6 +40,7 @@ def upload_to_github(repo_owner, repo_name, version_number, version_name, change
         upload_url = release_info["upload_url"]
         print("GitHub release created successfully.")
 
+        # --- Step 2: Upload the .mrpack file as a release asset ---
         asset_upload_url = upload_url.split('{')[0] + f"?name={os.path.basename(file_path)}"
         asset_headers = {
             "Authorization": f"token {github_token}",
@@ -75,20 +77,24 @@ def update_project_summary(project_id, game_versions, modrinth_token):
         print("Error: GAME_VERSIONS list is empty. Cannot update summary.")
         return False
 
-    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance. (No QoL mods)"
+    # This is the summary string we want to see on the project page
+    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance with Sodium included. (No QoL mods)"
     
     api_url = f"https://api.modrinth.com/v2/project/{project_id}"
-    headers = {"Authorization": modrinth_token, "User-Agent": "YoureIronic (youreironic@duck.com)"}
+    headers = {"Authorization": modrinth_token, "User-Agent": "ModrinthProjectUploader (youreironic@duck.com)"}
 
     try:
+        # --- STEP 1: GET the current project data ---
         response = requests.get(api_url, headers=headers)
         response.raise_for_status()
         current_summary = response.json().get("description")
 
+        # --- STEP 2: COMPARE the current summary with the desired one ---
         if current_summary == desired_summary:
             print("Project summary is already up-to-date. Skipping update.")
-            return True
+            return True  # Return True because the state is correct
 
+        # --- STEP 3: UPDATE only if they are different ---
         print("Project summary is outdated. Updating...")
         patch_data = {"description": desired_summary}
         patch_response = requests.patch(api_url, headers=headers, json=patch_data)
@@ -184,15 +190,15 @@ if __name__ == "__main__":
     GITHUB_REPO_NAME = "Always-Updated"
 
     # --- Version Specifics ---
-    GAME_VERSIONS = ["25w43a"]
-    VERSION_NUMBER = "3.4.2"
+    GAME_VERSIONS = ["25w44a"]
+    VERSION_NUMBER = "3.5.1"
     FILE_PATH = f"~/Downloads/Always Updated {VERSION_NUMBER}.mrpack"
     
     # --- Auto-Generated Fields ---
     VERSION_NAME = f"Always Updated v{VERSION_NUMBER} for Minecraft {GAME_VERSIONS[0]}"
-    CHANGELOG = 
-    f"""
-Markdown
+    CHANGELOG = f"""
+- Removed Fabric Renderer API
+- Updated [Sodium](https://modrinth.com/mod/sodium)
     """
     LOADERS = ["fabric"]
 
