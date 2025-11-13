@@ -1,0 +1,14 @@
+{
+  "project": {
+    "modrinth_id": "drZrp9Uv",
+    "github_repo_owner": "Ironics-Side-Projects",
+    "github_repo_name": "Always-Updated"
+  },
+  "version": {
+    "number": "4.0.1",
+    "game_versions": ["25w46a"],
+    "loaders": ["fabric"],
+    "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
+    "changelog": "- Added [Mod Menu](https://modrinth.com/mod/modmenu)\n\n### Notes\n- To the owner of the Elixer modpack, why are you grabing the Sodium jar file from my modpack instead of getting it from the maintainer... I know you do because I changed the name of the jar file last version and you happend to also do that for some reason..."
+  }
+}
