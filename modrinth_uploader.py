@@ -13,7 +13,7 @@ def update_project_summary(project_id, game_versions, modrinth_token):
         return False
     
     # This is the summary string we want to see on the project page
-    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This doesn't include QoL mods."
+    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
     
     api_url = f"https://api.modrinth.com/v2/project/{project_id}"
     headers = {"Authorization": modrinth_token, "User-Agent": "ModrinthProjectUploader (youreironic@duck.com)"}
