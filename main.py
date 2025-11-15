@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from modrinth_uploader import update_project_summary, demote_latest_release, upload_modpack
-from github_uploader import upload_to_github
+from github_uploader import upload_to_github, update_github_repo_description
 
 # Load environment variables
 load_dotenv()
@@ -20,6 +20,7 @@ if __name__ == "__main__":
     PROJECT_ID = config['project']['modrinth_id']
     GITHUB_REPO_OWNER = config['project']['github_repo_owner']
     GITHUB_REPO_NAME = config['project']['github_repo_name']
+    PROJECT_SUMMARY = config['project']['project_summary']
     
     GAME_VERSIONS = config['version']['game_versions']
     VERSION_NUMBER = config['version']['number']
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     # --- Main Upload Process ---
     modrinth_ok = False
     
-    if update_project_summary(PROJECT_ID, GAME_VERSIONS, MODRINTH_TOKEN):
+    if update_project_summary(PROJECT_ID, PROJECT_SUMMARY, MODRINTH_TOKEN):
         if demote_latest_release(PROJECT_ID, MODRINTH_TOKEN):
             if upload_modpack(
                 project_id=PROJECT_ID, 
@@ -58,7 +59,18 @@ if __name__ == "__main__":
     else:
         print("\nProcess halted because the Modrinth project summary could not be updated.")
 
+    # --- Sync GitHub repo description & create release if Modrinth succeeded ---
     if modrinth_ok:
+        # First, update the GitHub repo's main description to match Modrinth
+        if not update_github_repo_description(
+            repo_owner=GITHUB_REPO_OWNER,
+            repo_name=GITHUB_REPO_NAME,
+            new_description=PROJECT_SUMMARY,
+            github_token=GITHUB_TOKEN
+        ):
+            print("\nWARNING: Modrinth upload succeeded, but GitHub repo description update failed.")
+        
+        # Then, create the GitHub release and upload the asset
         if not upload_to_github(
             repo_owner=GITHUB_REPO_OWNER, 
             repo_name=GITHUB_REPO_NAME, 

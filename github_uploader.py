@@ -1,6 +1,35 @@
 import requests
 import os
 
+def update_github_repo_description(repo_owner, repo_name, new_description, github_token):
+    """
+    Updates the GitHub repository's description.
+    Returns True on success, False on failure.
+    """
+    print(f"\nUpdating GitHub repository description for {repo_owner}/{repo_name}...")
+    api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}"
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "description": new_description
+    }
+
+    try:
+        response = requests.patch(api_url, headers=headers, json=data)
+        response.raise_for_status()
+        print("GitHub repository description updated successfully.")
+        return True
+    except requests.exceptions.HTTPError as err:
+        print(f"HTTP Error while updating GitHub repo description: {err}")
+        print("Response body:", err.response.text)
+        return False
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred while updating GitHub repo description: {e}")
+        return False
+
 def upload_to_github(repo_owner, repo_name, version_number, version_name, changelog, file_path, github_token):
     """
     Creates a new release on GitHub and uploads the modpack file as a release asset.

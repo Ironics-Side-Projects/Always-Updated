@@ -2,21 +2,15 @@ import requests
 import json
 import os
 
-def update_project_summary(project_id, game_versions, modrinth_token):
+def update_project_summary(project_id, desired_summary, modrinth_token):
     """
     Checks the project's summary on Modrinth and updates it only if it's different.
     Returns True on success, False on failure.
     """
     print("Checking Modrinth project summary...")
-    if not game_versions:
-        print("Error: GAME_VERSIONS list is empty. Cannot update summary.")
-        return False
-    
-    # This is the summary string we want to see on the project page
-    desired_summary = f"[{game_versions[0]} / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
     
     api_url = f"https://api.modrinth.com/v2/project/{project_id}"
-    headers = {"Authorization": modrinth_token, "User-Agent": "ModrinthProjectUploader (youreironic@duck.com)"}
+    headers = {"Authorization": modrinth_token, "User-Agent": "YoureIronic/Always-Updated (youreironic@duck.com)"}
 
     try:
         # --- STEP 1: GET the current project data ---
@@ -27,7 +21,7 @@ def update_project_summary(project_id, game_versions, modrinth_token):
         # --- STEP 2: COMPARE the current summary with the desired one ---
         if current_summary == desired_summary:
             print("Project summary is already up-to-date. Skipping update.")
-            return True  # Return True because the state is correct
+            return True
 
         # --- STEP 3: UPDATE only if they are different ---
         print("Project summary is outdated. Updating...")
@@ -35,7 +29,7 @@ def update_project_summary(project_id, game_versions, modrinth_token):
         patch_response = requests.patch(api_url, headers=headers, json=patch_data)
         patch_response.raise_for_status()
         
-        print(f"Successfully updated project summary.")
+        print(f"Successfully updated Modrinth project summary.")
         return True
 
     except requests.exceptions.HTTPError as err:

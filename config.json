@@ -2,7 +2,8 @@
   "project": {
     "modrinth_id": "drZrp9Uv",
     "github_repo_owner": "Ironics-Side-Projects",
-    "github_repo_name": "Always-Updated"
+    "github_repo_name": "Always-Updated",
+    "project_summary": "[25w46a / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
     "number": "4.0.2",
