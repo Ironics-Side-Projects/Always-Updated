@@ -21,6 +21,10 @@ def update_project_summary(project_id, desired_summary, modrinth_token):
         # --- STEP 2: COMPARE the current summary with the desired one ---
         if current_summary == desired_summary:
             print("Project summary is already up-to-date. Skipping update.")
+
+            print(f"[DEBUG] Current: {repr(current_summary)}")
+            print(f"[DEBUG] Desired: {repr(desired_summary)}")
+
             return True
 
         # --- STEP 3: UPDATE only if they are different ---
@@ -55,6 +59,9 @@ def demote_latest_release(project_id, modrinth_token):
 
         if not latest_release:
             print("No previous 'release' version found. Skipping demotion.")
+
+            for v in versions[:3]:
+                print(f"  Version: {v['version_number']}, type: {v['version_type']}")
             return True
         
         latest_release_id = latest_release["id"]
