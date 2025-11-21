@@ -3,13 +3,13 @@
     "modrinth_id": "drZrp9Uv",
     "github_repo_owner": "Ironics-Side-Projects",
     "github_repo_name": "Always-Updated",
-    "project_summary": "[1.21.11-pre1 / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
+    "project_summary": "[1.21.11-pre2 / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
-    "number": "4.1.0",
-    "game_versions": ["1.21.11-pre1"],
+    "number": "4.2.0",
+    "game_versions": ["1.21.11-pre2"],
     "loaders": ["fabric"],
     "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
-    "changelog": "- Updated [Fabric API](https://modrinth.com/mod/fabric-api), [Sodium](https://modrinth.com/mod/sodium), [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric), and [Very Many Players](https://modrinth.com/mod/vmp-fabric)"
+    "changelog": "- Updated [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric)"
   }
 }
