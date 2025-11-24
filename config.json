@@ -6,10 +6,10 @@
     "project_summary": "[1.21.11-pre2 / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
-    "number": "4.2.0",
+    "number": "4.2.1",
     "game_versions": ["1.21.11-pre2"],
     "loaders": ["fabric"],
     "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
-    "changelog": "- Updated [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric)"
+    "changelog": "- Updated [Sodium](https://modrinth.com/mod/sodium)"
   }
 }
