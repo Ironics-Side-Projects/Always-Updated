@@ -40,13 +40,13 @@ if __name__ == "__main__":
 
 Get on GitHub: [Download Here]({GITHUB_RELEASE_URL})
 
-View changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
+Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
 
     CHANGELOG_FOR_GITHUB = f"""{BASE_CHANGELOG}
 
 Get on Modrinth: [Download Here]({MODRINTH_DOWNLOAD_URL})
 
-View changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
+Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
     
     # --- Validation ---
     if not MODRINTH_TOKEN or not GITHUB_TOKEN:
