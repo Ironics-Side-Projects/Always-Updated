@@ -6,10 +6,10 @@
     "project_summary": "[1.21.11-pre4 / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
-    "number": "1.0-1.21.11-pre4",
+    "number": "1.2-1.21.11-pre4",
     "game_versions": ["1.21.11-pre4"],
     "loaders": ["fabric"],
     "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
-    "changelog": "- Updated [Fabric API](https://modrinth.com/mod/fabric-api) and [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric)\n\n- Temporarily (hopefully) removed [Sodium](https://modrinth.com/mod/sodium) and [kennytvs-epic-force-close-loading-screen-mod-for-fabric](https://modrinth.com/mod/forcecloseworldloadingscreen)"
+    "changelog": "- Added [Sodium](https://modrinth.com/mod/sodium)\n- Removed [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric)"
   }
 }
