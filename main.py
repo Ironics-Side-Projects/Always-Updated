@@ -38,8 +38,6 @@ if __name__ == "__main__":
 
     CHANGELOG_FOR_MODRINTH = f"""{BASE_CHANGELOG}
 
-Get on GitHub: [Download Here]({GITHUB_RELEASE_URL})
-
 Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
 
     CHANGELOG_FOR_GITHUB = f"""{BASE_CHANGELOG}
