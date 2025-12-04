@@ -13,4 +13,8 @@ Always Updated follows a new custom versioning format starting December 1st 2025
 
 **A:** The "Game Version" may show as blank on Modrinth because their API isn't always updated to the latest snapshot version.
 
+**Q:** Will you backport or fix X version?
+
+**A:** If an [issue request](https://github.com/Ironics-Side-Projects/Always-Updated/issues) is created I will.
+
 _I made this because I play on the server [8bit.pt](https://www.youtube.com/@8bitpt) and most optimization modpacks dont update to snapshots._
