@@ -3,11 +3,11 @@
     "modrinth_id": "drZrp9Uv",
     "github_repo_owner": "Ironics-Side-Projects",
     "github_repo_name": "Always-Updated",
-    "project_summary": "[1.21.11-rc1 / 1.21.11] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
+    "project_summary": "[1.21.11-rc2 / April Fools] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
-    "number": "1.0-1.21.11-rc1",
-    "game_versions": ["1.21.11-rc1"],
+    "number": "1.0-1.21.11-rc2",
+    "game_versions": ["1.21.11-rc2"],
     "loaders": ["fabric"],
     "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
     "changelog": "- Updated to Java Edition 1.21.11 Release Candidate 1"
