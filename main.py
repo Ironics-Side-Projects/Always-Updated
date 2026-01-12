@@ -34,7 +34,6 @@ if __name__ == "__main__":
 
     # --- Generate Platform-Specific Changelogs ---
     MODRINTH_DOWNLOAD_URL = f"https://modrinth.com/modpack/always-updated/version/{VERSION_NUMBER}"
-    GITHUB_RELEASE_URL = f"https://github.com/{GITHUB_REPO_OWNER}/{GITHUB_REPO_NAME}/releases/tag/v{VERSION_NUMBER}"
 
     CHANGELOG_FOR_MODRINTH = f"""{BASE_CHANGELOG}
 
