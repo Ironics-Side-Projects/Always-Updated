@@ -1,9 +1,9 @@
-## Always Updated
+# 👑 Always Updated
 
-Always Updated is a modpack prioritizes updating quickly to the latest snapshots having the best optimization mods and configurations that are avaliable for the current Minecraft snapshot. There are very minimal quality of life (QoL) mods if you are expecting other ones you are going to need to add your own. If you would like more QoL mods while still being updated to snapshots try out [Elixir](https://modrinth.com/modpack/elixir) _(not made by me)_.
+Always Updated is a modpack that prioritizes updating quickly to the latest snapshots having the best optimization mods and configurations that are avaliable for the current Minecraft snapshot. There are very minimal quality of life (QoL) mods if you are expecting other ones you are going to need to add your own or use another modpack like [Elixir](https://modrinth.com/modpack/elixir) which also updates to the latest snapshots while having many QoL and resource pack compatibility related mods. _(Elixir is not made by me)_
 
 ## Maintenance
-When a new Minecraft snapshot or release comes out, we will stop supporting all earlier versions of the modpack. This pack is only updated and maintained for the most recent snapshot or official release. We will make every old version change to the Beta instead of Release for the release channel. We have always updated faster than any other modpack we cannot update any faster as we wait for the Sodium maintainer to update to the latest snapshot.
+When a new Minecraft snapshot or release comes out, I will stop supporting all earlier versions of the modpack. This pack is only updated and maintained for the most recent snapshot or official release. I will update the release channel for all older versions from Release to Beta. I try to update the modpack as fast as possible but I cannot update any faster as I tend to wait for the Sodium maintainer to update to the latest snapshot.
 
 ## Versioning
 Always Updated follows a new custom versioning format starting December 1st 2025, using a version number format of `<major>.<minor>-<snapshot number>`.
