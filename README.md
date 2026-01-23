@@ -6,7 +6,19 @@ Always Updated is a modpack that prioritizes updating quickly to the latest snap
 When a new Minecraft snapshot or release comes out, I will stop supporting all earlier versions of the modpack. This pack is only updated and maintained for the most recent snapshot or official release. I will update the release channel for all older versions from Release to Beta. I try to update the modpack as fast as possible but I cannot update any faster as I tend to wait for the Sodium maintainer to update to the latest snapshot.
 
 ## Versioning
-Always Updated follows a new custom versioning format starting December 1st 2025, using a version number format of `<major>.<minor>-<snapshot number>`.
+
+Always Updated uses a simplified versioning system as of January 22nd, 2026. Each release is identified by a single incremental number that increases by one with every update.
+
+### Version History
+
+**Current Format (January 22nd, 2026 - Present)**  
+Simple incremental numbering (1, 2, 3, etc.)
+
+**Previous Format (December 1st, 2025 - January 21st, 2026)**  
+Format: `<major>.<minor>-<snapshot number>`
+
+**Legacy Format (Prior to December 1st, 2025)**  
+[Semantic Versioning 2.0.0](https://semver.org/) specification
 
 ## FAQ
 **Q:** Why is the "Game Version" on Modrinth showing as blank?
