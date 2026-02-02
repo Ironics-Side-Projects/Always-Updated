@@ -13,21 +13,16 @@ def update_project_summary(project_id, desired_summary, modrinth_token):
     headers = {"Authorization": modrinth_token, "User-Agent": "YoureIronic/Always-Updated (youreironic@duck.com)"}
 
     try:
-        # --- STEP 1: GET the current project data ---
         response = requests.get(api_url, headers=headers)
         response.raise_for_status()
         current_summary = response.json().get("description")
 
-        # --- STEP 2: COMPARE the current summary with the desired one ---
         if current_summary == desired_summary:
             print("Project summary is already up-to-date. Skipping update.")
-
             print(f"[DEBUG] Current: {repr(current_summary)}")
             print(f"[DEBUG] Desired: {repr(desired_summary)}")
-
             return True
 
-        # --- STEP 3: UPDATE only if they are different ---
         print("Project summary is outdated. Updating...")
         patch_data = {"description": desired_summary}
         patch_response = requests.patch(api_url, headers=headers, json=patch_data)
@@ -59,7 +54,6 @@ def demote_latest_release(project_id, modrinth_token):
 
         if not latest_release:
             print("No previous 'release' version found. Skipping demotion.")
-
             for v in versions[:3]:
                 print(f"  Version: {v['version_number']}, type: {v['version_type']}")
             return True
@@ -77,16 +71,16 @@ def demote_latest_release(project_id, modrinth_token):
     except requests.exceptions.HTTPError as err:
         print(f"HTTP Error during demotion: {err}\nResponse body: {err.response.text}")
         return False
-    return True
 
 def upload_modpack(project_id, version_name, version_number, changelog, game_versions, loaders, file_path, modrinth_token):
     """
     Uploads a new modpack version to a Modrinth project.
+    Returns the version ID on success, or None on failure.
     """
     file_path = os.path.expanduser(file_path)
     if not os.path.exists(file_path):
         print(f"Error: The file '{file_path}' does not exist.")
-        return False
+        return None
     
     print(f"\nUploading new release to Modrinth: {version_name}...")
     api_url = "https://api.modrinth.com/v2/version"
@@ -102,11 +96,20 @@ def upload_modpack(project_id, version_name, version_number, changelog, game_ver
     try:
         response = requests.post(api_url, headers=headers, data=form_data, files=files)
         response.raise_for_status()
-        print("Modpack uploaded to Modrinth successfully!")
-        return True
+        
+        # Extract the version ID from the response
+        version_data = response.json()
+        version_id = version_data.get("id")
+        
+        print(f"Modpack uploaded to Modrinth successfully!")
+        print(f"  Version ID: {version_id}")
+        print(f"  Direct URL: https://modrinth.com/modpack/always-updated/version/{version_id}")
+        
+        return version_id
+        
     except requests.exceptions.HTTPError as err:
         print(f"HTTP Error during Modrinth upload: {err}\nResponse body: {err.response.text}")
-        return False
+        return None
     finally:
         if 'file' in files:
             files['file'][1].close()

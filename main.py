@@ -18,6 +18,7 @@ if __name__ == "__main__":
     
     # --- Get Configuration ---
     PROJECT_ID = config['project']['modrinth_id']
+    PROJECT_SLUG = config['project']['modrinth_slug']
     GITHUB_REPO_OWNER = config['project']['github_repo_owner']
     GITHUB_REPO_NAME = config['project']['github_repo_name']
     PROJECT_SUMMARY = config['project']['project_summary']
@@ -25,23 +26,15 @@ if __name__ == "__main__":
     GAME_VERSIONS = config['version']['game_versions']
     VERSION_NUMBER = config['version']['number']
     LOADERS = config['version']['loaders']
-    BASE_CHANGELOG = config['version']['changelog'].rstrip()  # Normalize: remove trailing whitespace
+    BASE_CHANGELOG = config['version']['changelog'].rstrip()
     
     FILE_PATH = config['version']['file_path'].replace('{VERSION_NUMBER}', VERSION_NUMBER)
     
     # --- Auto-Generated Fields ---
     VERSION_NAME = f"Always Updated v{VERSION_NUMBER} for Minecraft {GAME_VERSIONS[0]}"
 
-    # --- Generate Platform-Specific Changelogs ---
-    MODRINTH_DOWNLOAD_URL = f"https://modrinth.com/modpack/always-updated/version/{VERSION_NUMBER}"
-
+    # --- Generate Modrinth Changelog (doesn't need version ID) ---
     CHANGELOG_FOR_MODRINTH = f"""{BASE_CHANGELOG}
-
-Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
-
-    CHANGELOG_FOR_GITHUB = f"""{BASE_CHANGELOG}
-
-Get on Modrinth: [Download Here]({MODRINTH_DOWNLOAD_URL})
 
 Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
     
@@ -51,22 +44,21 @@ Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{
         exit(1)
     
     # --- Main Upload Process ---
-    modrinth_ok = False
+    modrinth_version_id = None
     
     if update_project_summary(PROJECT_ID, PROJECT_SUMMARY, MODRINTH_TOKEN):
         if demote_latest_release(PROJECT_ID, MODRINTH_TOKEN):
-            if upload_modpack(
+            modrinth_version_id = upload_modpack(
                 project_id=PROJECT_ID, 
                 version_name=VERSION_NAME, 
                 version_number=VERSION_NUMBER,
-                changelog=CHANGELOG_FOR_MODRINTH,  # 👈 Uses Modrinth-tailored changelog
+                changelog=CHANGELOG_FOR_MODRINTH,
                 game_versions=GAME_VERSIONS, 
                 loaders=LOADERS,
                 file_path=FILE_PATH, 
                 modrinth_token=MODRINTH_TOKEN
-            ):
-                modrinth_ok = True
-            else:
+            )
+            if not modrinth_version_id:
                 print("\nUpload halted because the new version could not be uploaded to Modrinth.")
         else:
             print("\nUpload halted because the previous Modrinth version could not be demoted.")
@@ -74,7 +66,16 @@ Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{
         print("\nProcess halted because the Modrinth project summary could not be updated.")
 
     # --- Sync GitHub repo description & create release if Modrinth succeeded ---
-    if modrinth_ok:
+    if modrinth_version_id:
+        # Generate GitHub changelog with the actual Modrinth version ID
+        MODRINTH_DOWNLOAD_URL = f"https://modrinth.com/modpack/{PROJECT_SLUG}/version/{modrinth_version_id}"
+        
+        CHANGELOG_FOR_GITHUB = f"""{BASE_CHANGELOG}
+
+Get on Modrinth: [Download Here]({MODRINTH_DOWNLOAD_URL})
+
+Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{GAME_VERSIONS[0]})"""
+        
         # First, update the GitHub repo's main description to match Modrinth
         if not update_github_repo_description(
             repo_owner=GITHUB_REPO_OWNER,
@@ -90,7 +91,7 @@ Changelog on Minecraft Wiki: [View Here](https://minecraft.wiki/w/Java_Edition_{
             repo_name=GITHUB_REPO_NAME, 
             version_number=VERSION_NUMBER,
             version_name=VERSION_NAME, 
-            changelog=CHANGELOG_FOR_GITHUB,  # 👈 Uses GitHub-tailored changelog
+            changelog=CHANGELOG_FOR_GITHUB,
             file_path=FILE_PATH, 
             github_token=GITHUB_TOKEN
         ):

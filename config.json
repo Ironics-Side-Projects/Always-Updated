@@ -1,15 +1,16 @@
 {
   "project": {
     "modrinth_id": "drZrp9Uv",
+    "modrinth_slug": "always-updated",
     "github_repo_owner": "Ironics-Side-Projects",
     "github_repo_name": "Always-Updated",
     "project_summary": "[26.1 Snapshot 5 / April Fools] - Modpack that mainly tries to support snapshots with maximum performance, including Sodium. This includes minimal QoL mods."
   },
   "version": {
-    "number": "1",
+    "number": "2",
     "game_versions": ["26.1-snapshot-5"],
     "loaders": ["fabric"],
     "file_path": "~/Downloads/Always Updated {VERSION_NUMBER}.mrpack",
-    "changelog": "- Updated [Concurrent Chunk Management Engine](https://modrinth.com/mod/c2me-fabric) and [Fabric API](https://modrinth.com/mod/fabric-api)"
+    "changelog": "- Added [No Chat Restrictions](https://modrinth.com/mod/no-chat-restrictions)\n- Updated [Fabric API](https://modrinth.com/mod/fabric-api)"
   }
 }
